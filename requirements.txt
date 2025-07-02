@@ -1,7 +1,6 @@
 streamlit
 pandas
 numpy
-joblib
 scikit-learn
-statsmodels==0.14.1
-sklearn
+lightgbm
+cloudpickle
