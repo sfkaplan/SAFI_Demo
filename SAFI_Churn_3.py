@@ -42,7 +42,7 @@ frecuencia = st.sidebar.slider("Frecuencia de transacciones por mes", 0, 10, 2)
 tiempo = st.sidebar.slider("Tiempo de permanencia (años)", 0.0, 10.0, 2.0)
 edad = st.sidebar.slider("Edad", 18, 80, 40)
 patrimonio = st.sidebar.number_input("Patrimonio invertido", value=100000.0)
-ubicacion = st.sidebar.selectbox("Ubicación", ["Capital", "Interior", "CABA", "Conurbano"])
+ubicacion = st.sidebar.selectbox("Ubicación", ["La Paz", "Santa Cruz", "Cochabamba", "Oruro"])
 
 modelo_elegido = st.selectbox("Elegí un modelo", list(models.keys()))
 
