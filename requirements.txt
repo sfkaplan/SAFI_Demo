@@ -1,6 +1,5 @@
 streamlit
 pandas
-numpy
 scikit-learn==1.6.1
 lightgbm
 cloudpickle
@@ -8,3 +7,6 @@ statsmodels
 shap
 matplotlib
 scipy
+numpy<1.26
+shap==0.41.0
+
