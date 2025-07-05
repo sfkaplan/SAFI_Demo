@@ -8,7 +8,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import cloudpickle
-import shap
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
@@ -120,18 +119,21 @@ with tab_interpretabilidad:
         st.dataframe(coef_df)
 
     else:
-        st.subheader("🌳 SHAP values: contribución de las variables")
-        explainer = shap.TreeExplainer(modelo)
-        shap_values = explainer.shap_values(X_input)
+        st.subheader("🌳 Importancia de las variables")
+        feature_importances = modelo.feature_importances_
+        importance_df = pd.DataFrame({
+            "Variable": feature_names,
+            "Importancia": feature_importances
+        }).sort_values(by="Importancia", ascending=False)
 
-        # Mostrar gráfico de contribución
-        st.write("#### Gráfico de contribución (para la predicción actual)")
-        shap.initjs()
+        st.dataframe(importance_df)
+
+        # Gráfico de barras
+        st.write("#### Gráfico de importancia")
         fig, ax = plt.subplots()
-        shap.waterfall_plot(shap.Explanation(
-            values=shap_values[1][0],
-            base_values=explainer.expected_value[1],
-            data=pd.DataFrame(X_input, columns=feature_names).iloc[0]
-        ))
+        ax.barh(importance_df["Variable"], importance_df["Importancia"])
+        ax.invert_yaxis()
+        ax.set_xlabel("Importancia")
+        ax.set_title("Importancia de las variables")
         st.pyplot(fig)
 
