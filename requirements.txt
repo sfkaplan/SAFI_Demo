@@ -7,3 +7,4 @@ cloudpickle
 statsmodels
 shap
 matplotlib
+scipy
